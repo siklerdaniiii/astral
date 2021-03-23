@@ -1,0 +1,94 @@
+{% extends "../base_pages.html" %}
+
+{% block head %}
+<title>Oldalak</title>
+{% endblock %}
+
+{% block content %}
+
+
+    <!-- pageheader -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Oldalak</h2>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Pages</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Blank Pageheader</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end pageheader -->
+
+    <div class="row">
+        <!-- data table  -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-right">
+                        <a href="{% url 'page_create' %}" class="btn btn-primary">Új hozzáadása</a>
+                    </div>
+                    <h5 class="mb-0">Bejegyzések</h5>
+                    <p>This example shows DataTables and the Buttons extension being used with the Bootstrap 4 framework providing the styling.</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered first table-sm" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Kép</th>
+                                    <th>Cím</th>
+                                    <th>Elhelyezkedés</th>
+                                    <th class="text-right">Státusz</th>
+                                    <th class="text-right">Művelet</th>
+                                </tr>
+                            </thead>
+                            <tbody>      
+                            {% for page in pages %}
+                               
+                                <tr>
+                                    <td width="50px"><img src="{{page.page_image.url}}" style="width: 100%; height: 40px; padding: 2px; border: 1px solid #eee;"></td>
+                                    <td style="text-transform: none;"><span class="span-title">{{page.page_title}}</span></td>
+                                    <td>{{ page.page_mobile_id }}</td>
+                                    <td class="text-right">
+                                       {% if page.page_status == 1 %}                                        
+                                               <span class='badge badge-pill bg-success text-white'>Közzétéve</span>
+                                        {% else %}
+                                               <span class='badge badge-pill bg-warning text-white'>Vázlat</span>                                            
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{% url 'page_update' page.pk %}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{% url 'page_delete' page.pk %}" class="btn btn-sm btn-danger text-white"><i class="far fa-trash-alt"></i></a>                    
+                                    </td>
+                                </tr>
+                             {% endfor %}                                                              
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Kép</th>
+                                    <th>Cím</th>
+                                    <th>Elhelyezkedés</th>
+                                    <th class="text-right">Státusz</th>
+                                    <th class="text-right">Művelet</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end data table  -->
+    </div>
+
+
+    
+
+{% endblock %}

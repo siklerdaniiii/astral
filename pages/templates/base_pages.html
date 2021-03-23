@@ -1,0 +1,249 @@
+{% load static %}
+<!doctype html>
+<html lang="hu">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Webgladiator App</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/vendor/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static '/libs/css/style.css'%}">
+    <link rel="stylesheet" href="{% static '/vendor/fonts/fontawesome/css/fontawesome-all.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/datatables/css/dataTables.bootstrap4.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/datatables/css/buttons.bootstrap4.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/datatables/css/select.bootstrap4.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static '/vendor/datatables/css/fixedHeader.bootstrap4.css'%}">
+    <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+</head>
+
+
+
+<body>
+    <div class="dashboard-main-wrapper">
+        <!-- navbar -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="/">
+                    <img src="https://webgladiator.hu/wp-content/uploads/2020/08/gladiator-logo-2048x2048.png"
+                        width="40" height="40" class="d-inline-block align-top" alt="">
+                    Webgladiator
+                </a>
+            </nav>
+        </div>
+        <!-- end navbar -->
+        <!-- left sidebar -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menü
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../dashboard-finance.html"><i
+                                        class="fas fa-tachometer-alt"></i>Vezérlőpult</a>
+                            </li>
+                            <li class="nav-divider">
+                                Hírek
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-1" aria-controls="submenu-1"><i
+                                        class="far fa-newspaper"></i>Bejegyzések <span
+                                        class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'post_index' %}">Összes bejegyzés</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'post_create' %}">Új bejegyzés</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'post_category_index' %}">Kategóriák</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'post_owner_index' %}">Tulajdonos</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-divider">
+                                Oldalak
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-3" aria-controls="submenu-3"><i
+                                        class="fas fa-file-alt"></i>Oldalak</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'page_index' %}">Összes oldal</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'page_create' %}">Új oldal</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-divider">
+                                Helyek
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-4" aria-controls="submenu-4"><i
+                                        class="fas fa-map-marker-alt"></i> Helyek</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-c3.html">Összes hely</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-chartist.html">Új hely</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-chartist.html">Típus</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="general.html">Kategóriák</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-divider">
+                                Termékek
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-6" aria-controls="submenu-6"><i
+                                        class="fas fa-clipboard-list"></i>Termékek</a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-c3.html">Összes termék</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chart-chartist.html">Új termék</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="general.html">Kategóriák</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="chart-chartist.html"><i class="fas fa-shopping-cart"></i>
+                                    Megrendelések</a>
+                            </li>
+                            <li class="nav-divider">
+                                Push Up üzenet
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="chart-chartist.html"><i class="fas fa-paper-plane"></i> Új
+                                    üzenet</a>
+                            </li>
+
+                            <li class="nav-divider">
+                                Fiók
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-8" aria-controls="submenu-8"><i
+                                        class="fas fa-users"></i>Felhasználok</a>
+                                <div id="submenu-8" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../controller/managers.php">Beállítások</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/app/controller/managers.php">Felhasználói
+                                                fiók</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/app/controller/new_manager.php">Új
+                                                felhasználó</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="multiselect.html"><i class="fas fa-sign-out-alt"></i>
+                                    Kijelentkezés</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- end left sidebar -->
+
+        <!-- wrapper  -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                    {% if messages %}
+                     <!-- Alert  -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- end alert -->
+                    {% endif %}
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a
+                                href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+        <!-- end main wrapper -->
+    </div>
+    <!-- end main wrapper -->
+    <!-- Optional JavaScript -->
+    <script src="{% static '/vendor/jquery/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.js'%}"></script>
+    <script src="{% static '/vendor/slimscroll/jquery.slimscroll.js'%}"></script>
+    <script src="{% static '/libs/js/main-js.js'%}"></script>
+
+    <script src="{% static '/vendor/datatables/js/dataTables.min.js'%}"></script>
+    <script src="{% static '/vendor/datatables/js/dataTables.bootstrap4.min.js'%}"></script>
+    <script src="{% static '/vendor/datatables/js/data-table.js'%}"></script>
+
+
+</body>
+
+</html>
+
