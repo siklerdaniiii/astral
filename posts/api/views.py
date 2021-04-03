@@ -79,3 +79,14 @@ def api_post_owners_view(request):
 
 
 
+@api_view(['POST',])
+def api_post_create_view(request):
+    if request.method == 'POST':
+        serializer = PostApi(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
