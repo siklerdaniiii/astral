@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'posts',
     'pages',
+    'blog',
     'accounts'
 ]
 

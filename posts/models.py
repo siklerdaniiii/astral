@@ -47,6 +47,8 @@ class Post(models.Model):
     post_category = models.ForeignKey(PostCategory, on_delete= models.SET_NULL,related_name='categories_posts', null=True, blank=True)
     post_owner = models.ForeignKey(PostOwner, on_delete=models.SET_NULL,related_name='owners_posts', null=True, blank=True)
 
+    post_is_paid = models.BooleanField(default=False) #fizetős igen/nem
+
     post_updated_at = models.DateTimeField(auto_now= True)
     post_created_at = models.DateTimeField(auto_now_add=True)
 

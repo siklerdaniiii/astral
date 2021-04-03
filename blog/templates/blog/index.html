@@ -1,7 +1,7 @@
-{% extends "../base_posts.html" %}
+{% extends "../base_blog.html" %}
 
 {% block head %}
-<title>Bejegyzések</title>
+<title>Blog</title>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h2 class="pageheader-title">Bejegyzések</h2>
+                <h2 class="pageheader-title">Blog</h2>
                 <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
@@ -33,9 +33,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <a href="{% url 'post_create' %}" class="btn btn-primary">Új hozzáadása</a>
+                        <a href="{% url 'blog_create' %}" class="btn btn-primary">Új hozzáadása</a>
                     </div>
-                    <h5 class="mb-0">Bejegyzések</h5>
+                    <h5 class="mb-0">Blog</h5>
                     <p>This example shows DataTables and the Buttons extension being used with the Bootstrap 4 framework providing the styling.</p>
                 </div>
                 <div class="card-body">
@@ -46,45 +46,37 @@
                                     <th>Kép</th>
                                     <th>Cím</th>
                                     <th>Kategória</th>
-                                    <th>Tulajdonos</th>
-                                    <th>Egyedi mező #1</th>
-                                    <th>Egyedi mező #2</th>
-                                    <th>Egyedi mező #3</th>
                                     <th>Kiemelt</th>
                                     <th>Státusz</th>
-                                    <th>Fizetős?</th>
+                                    <th>Szerző</th>
                                     <th class="text-right">Művelet</th>
                                 </tr>
                             </thead>
                             <tbody>      
-                            {% for post in posts %}
+                            {% for blog in blogs %}
                                
                                 <tr>
-                                    <td width="50px"><img src="{{post.post_image.url}}" style="width: 100%; height: 40px; padding: 2px; border: 1px solid #eee;"></td>
-                                    <td style="text-transform: none;"><span class="span-title">{{post.post_title}}</span></td>
-                                    <td>{{ post.post_category }}</td>
-                                    <td>{{ post.post_owner }}</td>
-                                    <td>{{ post.post_text_1 }}</td>
-                                    <td>{{ post.post_text_2 }}</td>
-                                    <td>{{ post.post_text_3 }}</td>
+                                    <td width="50px"><img src="{{blog.blog_image.url}}" style="width: 100%; height: 40px; padding: 2px; border: 1px solid #eee;"></td>
+                                    <td style="text-transform: none;"><span class="span-title">{{blog.blog_title}}</span></td>
+                                    <td>{{ blog.blog_category }}</td>
                                     <td>
-                                        {% if post.post_featured == True %}
+                                        {% if blog.blog_featured == True %}
                                         <span class='badge badge-pill bg-success text-white'>Igen</span>
                                         {% else %}
                                         <span class='badge badge-pill bg-secondary text-white'>Nem</span>
                                         {% endif %}
                                     </td>
                                     <td>
-                                       {% if post.post_status == 1 %}                                        
+                                       {% if blog.blog_status == 1 %}                                        
                                                <span class='badge badge-pill bg-success text-white'>Közzétéve</span>
                                         {% else %}
                                                <span class='badge badge-pill bg-warning text-white'>Vázlat</span>                                            
                                         {% endif %}
                                     </td>
-                                    <td>{{post.post_is_paid}}</td>
+                                    <td>{{blog.blog_author.last_name}} {{blog.blog_author.first_name}}</td>
                                     <td class="text-right">
-                                        <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-danger text-white"><i class="far fa-trash-alt"></i></a>                    
+                                        <a href="{% url 'blog_update' blog.pk %}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{% url 'blog_delete' blog.pk %}" class="btn btn-sm btn-danger text-white"><i class="far fa-trash-alt"></i></a>                    
                                     </td>
                                 </tr>
                              {% endfor %}                                                              
@@ -94,13 +86,9 @@
                                     <th>Kép</th>
                                     <th>Cím</th>
                                     <th>Kategória</th>
-                                    <th>Tulajdonos</th>
-                                    <th>Egyedi mező #1</th>
-                                    <th>Egyedi mező #2</th>
-                                    <th>Egyedi mező #3</th>
                                     <th>Kiemelt</th>
                                     <th>Státusz</th>
-                                    <th>Fizetős?</th>
+                                    <th>Szerző</th>
                                     <th class="text-right">Művelet</th>
                                 </tr>
                             </tfoot>
