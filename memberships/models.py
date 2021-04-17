@@ -2,13 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+    (0,"Vázlat"),
+    (1,"Őublikálva")
 )
 
 MEMBER_STATUS = (
-    (0,"Cancelled"),
-    (1,"Active")
+    (0,"Nem aktív"),
+    (1,"Aktív")
 )
 
 PLAN_SLUG = (

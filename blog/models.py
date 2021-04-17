@@ -20,8 +20,8 @@ class BlogOwner(models.Model):
 
 
 STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+    (0,"Vázlat"),
+    (1,"Publikálva")
 )
 
 class Blog(models.Model):

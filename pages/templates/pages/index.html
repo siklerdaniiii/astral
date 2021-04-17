@@ -45,6 +45,7 @@
                                 <tr>
                                     <th>Kép</th>
                                     <th>Cím</th>
+                                    <th>Egyedi mező</th>
                                     <th>Elhelyezkedés</th>
                                     <th class="text-right">Státusz</th>
                                     <th class="text-right">Művelet</th>
@@ -56,7 +57,8 @@
                                 <tr>
                                     <td width="50px"><img src="{{page.page_image.url}}" style="width: 100%; height: 40px; padding: 2px; border: 1px solid #eee;"></td>
                                     <td style="text-transform: none;"><span class="span-title">{{page.page_title}}</span></td>
-                                    <td>{{ page.page_mobile_id }}</td>
+                                    <td>{{page.page_unique_field}}</td>
+                                    <td>{{ page.page_slug }}</td>
                                     <td class="text-right">
                                        {% if page.page_status == 1 %}                                        
                                                <span class='badge badge-pill bg-success text-white'>Közzétéve</span>
@@ -75,6 +77,7 @@
                                 <tr>
                                     <th>Kép</th>
                                     <th>Cím</th>
+                                    <th>Egyedi mező</th>
                                     <th>Elhelyezkedés</th>
                                     <th class="text-right">Státusz</th>
                                     <th class="text-right">Művelet</th>

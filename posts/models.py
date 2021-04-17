@@ -20,8 +20,8 @@ class PostOwner(models.Model):
 
 
 STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+    (0,"Vázlat"),
+    (1,"Publikálva")
 )
 
 class Post(models.Model):
@@ -48,7 +48,7 @@ class Post(models.Model):
 
     post_is_paid = models.BooleanField(default=False) #fizetős igen/nem
 
-    post_plan = models.ManyToManyField(Plan)
+    post_plan = models.ManyToManyField(Plan, related_name='plans')
 
     post_updated_at = models.DateTimeField(auto_now= True)
     post_created_at = models.DateTimeField(auto_now_add=True)

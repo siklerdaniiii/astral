@@ -28,9 +28,8 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="/">
-                    <img src="https://webgladiator.hu/wp-content/uploads/2020/08/gladiator-logo-2048x2048.png"
-                        width="40" height="40" class="d-inline-block align-top" alt="">
-                    Webgladiator
+                    <img src="/media//images/logo.png"
+                        width="auto" height="40" class="d-inline-block align-top" alt="">
                 </a>
             </nav>
         </div>
@@ -46,35 +45,55 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
+                          
                             <li class="nav-divider">
-                                Menü
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../dashboard-finance.html"><i
-                                        class="fas fa-tachometer-alt"></i>Vezérlőpult</a>
-                            </li>
-                            <li class="nav-divider">
-                                Hírek
+                                Receptek
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-1" aria-controls="submenu-1"><i
-                                        class="far fa-newspaper"></i>Bejegyzések <span
+                                    data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-book" aria-hidden="true"></i>Receptek <span
                                         class="badge badge-success">6</span></a>
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
 
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'post_index' %}">Összes bejegyzés</a>
+                                            <a class="nav-link" href="{% url 'post_index' %}">Összes recept</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'post_create' %}">Új bejegyzés</a>
+                                            <a class="nav-link" href="{% url 'post_create' %}">Új recept</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'post_category_index' %}">Kategóriák</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'post_owner_index' %}">Tulajdonos</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-divider">
+                                Blog
+                            </li>
+
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-2" aria-controls="submenu-1"><i class="fas fa-thumbtack"></i>Blog <span
+                                        class="badge badge-success">6</span></a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'blog_index' %}">Összes bejegyzés</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'blog_create' %}">Új bejegyzés</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'blog_category_index' %}">Kategóriák</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'blog_owner_index' %}">Tulajdonos</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,38 +117,14 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-divider">
-                                Helyek
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-4" aria-controls="submenu-4"><i
-                                        class="fas fa-map-marker-alt"></i> Helyek</a>
-                                <div id="submenu-4" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-c3.html">Összes hely</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-chartist.html">Új hely</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-chartist.html">Típus</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="general.html">Kategóriák</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                            
 
                             <li class="nav-divider">
-                                Termékek
+                                Értékesítés
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-6" aria-controls="submenu-6"><i
-                                        class="fas fa-clipboard-list"></i>Termékek</a>
+                                    data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-archive"></i>Termékek</a>
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">

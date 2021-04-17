@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h2 class="pageheader-title">Bejegyzések</h2>
+                <h2 class="pageheader-title">Receptek</h2>
                 <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
@@ -35,7 +35,7 @@
                     <div class="float-right">
                         <a href="{% url 'post_create' %}" class="btn btn-primary">Új hozzáadása</a>
                     </div>
-                    <h5 class="mb-0">Bejegyzések</h5>
+                    <h5 class="mb-0">Receptek</h5>
                     <p>This example shows DataTables and the Buttons extension being used with the Bootstrap 4 framework providing the styling.</p>
                 </div>
                 <div class="card-body">
@@ -47,9 +47,7 @@
                                     <th>Cím</th>
                                     <th>Kategória</th>
                                     <th>Tulajdonos</th>
-                                    <th>Egyedi mező #1</th>
-                                    <th>Egyedi mező #2</th>
-                                    <th>Egyedi mező #3</th>
+                                    <th>Tagság</th>
                                     <th>Kiemelt</th>
                                     <th>Státusz</th>
                                     <th>Fizetős?</th>
@@ -64,9 +62,7 @@
                                     <td style="text-transform: none;"><span class="span-title">{{post.post_title}}</span></td>
                                     <td>{{ post.post_category }}</td>
                                     <td>{{ post.post_owner }}</td>
-                                    <td>{{ post.post_text_1 }}</td>
-                                    <td>{{ post.post_text_2 }}</td>
-                                    <td>{{ post.post_text_3 }}</td>
+                                    <td>{{ post.post_plan.all|join:", " }}</td>
                                     <td>
                                         {% if post.post_featured == True %}
                                         <span class='badge badge-pill bg-success text-white'>Igen</span>
@@ -95,9 +91,7 @@
                                     <th>Cím</th>
                                     <th>Kategória</th>
                                     <th>Tulajdonos</th>
-                                    <th>Egyedi mező #1</th>
-                                    <th>Egyedi mező #2</th>
-                                    <th>Egyedi mező #3</th>
+                                    <th>Tagság</th>
                                     <th>Kiemelt</th>
                                     <th>Státusz</th>
                                     <th>Fizetős?</th>

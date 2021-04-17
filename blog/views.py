@@ -135,7 +135,7 @@ def update_owner(request, pk):
         messages.success(request, 'Sikeresen módosítva!')
         return redirect('blog_owner_index')
     else:
-        form = PostOwnerForm(instance=owner)
+        form = BlogOwnerForm(instance=owner)
     return render(request, 'blog/update_owner.html', {'form': form})
 
 @login_required
