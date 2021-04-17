@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 
 STATUS = (
     (0,"Vázlat"),
-    (1,"Őublikálva")
+    (1,"Publikálva")
 )
 
 MEMBER_STATUS = (
-    (0,"Nem aktív"),
+    (0,"Inaktív"),
     (1,"Aktív")
 )
 
@@ -42,7 +42,6 @@ class Plan(models.Model):
 
 
 class Member(models.Model):
-    member_name = models.CharField(max_length=200)
     member_email = models.CharField(max_length=200)
     member_uid = models.CharField(max_length=254)
     member_status = models.IntegerField(choices=MEMBER_STATUS, default=0)
@@ -51,6 +50,6 @@ class Member(models.Model):
     member_expires = models.DateField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
-        return self.member_name
+        return self.member_email
 
 

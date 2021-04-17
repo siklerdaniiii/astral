@@ -32,8 +32,8 @@
             </nav>
         </div>
         <!-- end navbar -->
-           <!-- left sidebar -->
-           <div class="nav-left-sidebar sidebar-dark">
+         <!-- left sidebar -->
+         <div class="nav-left-sidebar sidebar-dark">
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
@@ -121,26 +121,14 @@
                                 Értékesítés
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-archive"></i>Termékek</a>
-                                <div id="submenu-6" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-c3.html">Összes termék</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-chartist.html">Új termék</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="general.html">Kategóriák</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a class="nav-link" href="{% url 'member_index' %}"><i class="fa fa-users" aria-hidden="true"></i>
+                                    Tagok</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="chart-chartist.html"><i class="fas fa-shopping-cart"></i>
-                                    Megrendelések</a>
+                                <a class="nav-link" href="{% url 'plan_index' %}"><i class="fa fa-archive" aria-hidden="true"></i>
+                                    Csomagok</a>
                             </li>
+                           
                             <li class="nav-divider">
                                 Push Up üzenet
                             </li>
@@ -152,29 +140,15 @@
                             <li class="nav-divider">
                                 Fiók
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-8" aria-controls="submenu-8"><i
-                                        class="fas fa-users"></i>Felhasználok</a>
-                                <div id="submenu-8" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../controller/managers.php">Beállítások</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/app/controller/managers.php">Felhasználói
-                                                fiók</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/app/controller/new_manager.php">Új
-                                                felhasználó</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="multiselect.html"><i class="fas fa-sign-out-alt"></i>
+                                <a class="nav-link" href="{% url 'account_list' %}"><i class="fas fa-paper-plane"></i> Felhasználók</a>
+                            </li>
+
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>
                                     Kijelentkezés</a>
                             </li>
                         </ul>
