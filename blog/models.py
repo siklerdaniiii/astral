@@ -10,6 +10,14 @@ class BlogCategory(models.Model):
     def __str__(self):
         return self.blog_category_name
 
+class BlogOwner(models.Model):
+    blog_owner_name = models.CharField(max_length=200, db_index=True)
+    blog_owner_meta = models.CharField(max_length=254)
+    blog_owner_image = models.ImageField(upload_to='blog/owner', default='blog/owner/default.jpg')
+
+    def __str__(self):
+        return self.blog_owner_name
+
 
 STATUS = (
     (0,"Draft"),
@@ -26,7 +34,8 @@ class Blog(models.Model):
     blog_featured = models.BooleanField(default=True)
     blog_status = models.IntegerField(choices=STATUS, default=0)
 
-    blog_author = models.ForeignKey(User, on_delete= models.SET_NULL,related_name='authors_blogs', null=True, blank=True)
+    blog_owner = models.ForeignKey(BlogOwner, on_delete=models.SET_NULL,related_name='owners_blogs', null=True, blank=True)
+
     blog_category = models.ForeignKey(BlogCategory, on_delete= models.SET_NULL,related_name='categories_blogs', null=True, blank=True)
 
     blog_updated_at = models.DateTimeField(auto_now= True)

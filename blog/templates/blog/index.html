@@ -73,7 +73,7 @@
                                                <span class='badge badge-pill bg-warning text-white'>Vázlat</span>                                            
                                         {% endif %}
                                     </td>
-                                    <td>{{blog.blog_author.last_name}} {{blog.blog_author.first_name}}</td>
+                                    <td>{{blog.blog_owner.blog_owner_name}}</td>
                                     <td class="text-right">
                                         <a href="{% url 'blog_update' blog.pk %}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                         <a href="{% url 'blog_delete' blog.pk %}" class="btn btn-sm btn-danger text-white"><i class="far fa-trash-alt"></i></a>                    

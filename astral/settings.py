@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'django_filters',
     'django_cleanup',
     'rest_framework',
     'dbbackup',
     'mathfilters',
+    'memberships',
     'posts',
     'pages',
     'blog',
@@ -148,6 +150,9 @@ LOGIN_URL = 'login'
 
 LOGOUT_REDIRECT_URL = 'login'
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 #LANGUAGES = (
 #    ('hu',    '{}/{}'.format(ugettext('Magyar'), 'Magyar')),

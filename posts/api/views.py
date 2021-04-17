@@ -1,10 +1,16 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import HttpResponse
+from rest_framework.generics import ListAPIView
+from django.db.models import Q
 
 from posts.models import Post, PostCategory, PostOwner
+from memberships.models import Plan, Member
 from posts.api.serializers import PostApi, PostCategoryApi, PostOwnerApi
+from rest_framework import filters
 
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 @api_view(['GET',])
@@ -17,6 +23,50 @@ def api_posts_view(request):
     if request.method == 'GET':
         serializer = PostApi(post, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET',])
+def api_post_paid_view(request, uid):
+    try:
+        member = Member.objects.filter(Q(member_uid = uid) and Q(member_status = 1)).order_by('member_since').first()  #rendezve a legutolsó előfizetés szerint
+        is_member = Member.objects.filter(member_uid = uid).last()
+        #ha member akkor lekérem azt, hogy aktiv e
+        if is_member and is_member.member_status == 1:
+            print('Ő member és aktív is')
+            #ha aktív akkor lekérem a hozzá tartozó cikkeket, ha nem akkor ingynees tartalmat jeleniti meg neki
+            member_plan = is_member.member_plan.plan_slug #aktuális tagság
+            print(member_plan)
+            posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) and Q(post_plan__plan_slug = 'free')).distinct()
+            print(posts)
+        else:
+            print('Nem member vagy nem aktiv')
+            posts = Post.objects.filter(post_plan__plan_slug = 'free')
+            print('Ingyenes psoztok:',posts)
+    except Member.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+   
+
+    if request.method == 'GET':
+        serializer = PostApi(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+class BookmarkList(ListAPIView):
+    serializer_class = PostApi
+    def get_queryset(self):
+        # Get URL parameter as a string, if exists 
+        ids = self.request.query_params.get('ids', None)
+        # Get snippets for ids if they exist
+        if ids is not None:
+            # Convert parameter string to list of integers
+            ids = [ int(x) for x in ids.split(',') ]
+            # Get objects for all parameter ids 
+            queryset = Post.objects.filter(id__in=ids)
+        else:
+            # Else no parameters, return all objects
+            queryset = Post.objects.all()
+        return queryset
 
 @api_view(['GET',])
 def api_post_details_view(request, pk):

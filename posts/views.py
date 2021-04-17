@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import Post, PostCategory, PostOwner
+from memberships.models import Plan, Member
 from .forms import  PostForm, PostCategoryForm, PostOwnerForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 # Create your views here.
 
 
@@ -15,6 +17,32 @@ def index(request):
     except Post.DoesNotExist:
         raise Http404("404 | Nem létezik!")
     return render(request, 'posts/index.html', {'posts':posts})
+
+def index2(request, uid):
+    #Uid alapján lekérdezés full kód!!!!
+    #uid = '2423rferfew'
+    member = Member.objects.filter(Q(member_uid = uid) and Q(member_status = 1)).order_by('member_since').first()  #rendezve a legutolsó előfizetés szerint
+    
+    #id alapján megnézem, hogy member e
+    is_member = Member.objects.filter(member_uid = uid).last()
+    #ha member akkor lekérem azt, hogy aktiv e
+    if is_member and is_member.member_status == 1:
+        print('Ő member és aktív is')
+        #ha aktív akkor lekérem a hozzá tartozó cikkeket, ha nem akkor ingynees tartalmat jeleniti meg neki
+        member_plan = is_member.member_plan.plan_slug #aktuális tagság
+        print(member_plan)
+        posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) or Q(post_plan__plan_slug = 'free')).distinct()
+        print(posts)
+    else:
+        print('Nem member vagy nem aktiv')
+        posts = Post.objects.filter(post_plan__plan_slug = 'free')
+        print('Ingyenes psoztok:',posts)
+    #
+    
+
+
+    return HttpResponse('e')
+
 
 
 @login_required
