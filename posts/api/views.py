@@ -36,7 +36,7 @@ def api_post_paid_view(request, uid):
             #ha aktív akkor lekérem a hozzá tartozó cikkeket, ha nem akkor ingynees tartalmat jeleniti meg neki
             member_plan = is_member.member_plan.plan_slug #aktuális tagság
             print(member_plan)
-            posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) and Q(post_plan__plan_slug = 'free')).distinct()
+            posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) or Q(post_plan__plan_slug = 'free')).distinct()
             print(posts)
         else:
             print('Nem member vagy nem aktiv')

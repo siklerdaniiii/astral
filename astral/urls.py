@@ -26,18 +26,22 @@ urlpatterns = [
     path('posts/', include('posts.urls')), #posts url
     path('pages/', include('pages.urls')), #pages url
     path('blog/', include('blog.urls')), #blog url
+    path('contact/', include('contact.urls')), #contact url
     path('membership/', include('memberships.urls')), #member url
 
+    #AUTH
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
+    #ACCOUNT
     path('accounts/', include('accounts.urls')),
 
     #REST FRAMEWORKS
     path('api/posts/', include('posts.api.urls')),
     path('api/pages/', include('pages.api.urls')),
     path('api/accounts/', include('accounts.api.urls')),
-    path('api/blog/', include('blog.api.urls'))
+    path('api/blog/', include('blog.api.urls')),
+    path('api/contact/', include('contact.api.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

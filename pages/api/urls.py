@@ -1,7 +1,7 @@
 from django.urls import path
-from pages.api.views import api_page_details_view
+from pages.api.views import api_pages_view
 
 
 urlpatterns = [
-    path('<pk>', api_page_details_view, name='api_page_details'),
+    path('', api_pages_view, name='api_pages'),
 ]

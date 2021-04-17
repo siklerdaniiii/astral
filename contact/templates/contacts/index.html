@@ -1,0 +1,94 @@
+{% extends "../base_contacts.html" %}
+
+{% block head %}
+<title>Kapcsolat</title>
+{% endblock %}
+
+{% block content %}
+
+
+    <!-- pageheader -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">Kapcsolat</h2>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Pages</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Blank Pageheader</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end pageheader -->
+
+    <div class="row">
+        <!-- data table  -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                   
+                    <h5 class="mb-0">Kapcsolat</h5>
+                    <p>This example shows DataTables and the Buttons extension being used with the Bootstrap 4 framework providing the styling.</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered first table-sm" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Név</th>
+                                    <th>E-mail cím</th>
+                                    <th>Státusz</th>
+                                    <th>Dátum</th>
+                                    <th class="text-right">Művelet</th>
+                                </tr>
+                            </thead>
+                            <tbody>      
+                            {% for contact in contacts %}
+                               
+                                <tr>
+                                    <td>{{contact.contact_name}}</td>
+                                    <td>{{contact.contact_email}}</td>
+                                    <td class="text-right">
+                                       {% if contact.contact_status == 2 %}                                        
+                                               <span class='badge badge-pill bg-success text-white'>Új</span>
+                                        {% elif contact.contact_status == 1 %}
+                                               <span class='badge badge-pill bg-warning text-white'>Folyamatban</span>   
+                                        {% else %}             
+                                                <span class='badge badge-pill bg-danger text-white'>Új</span>                               
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right">{{contact.contact_created_at}}</td>
+                                    <td class="text-right">
+                                        <a href="{% url 'contact_update' contact.pk %}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-sm btn-danger text-white"><i class="far fa-trash-alt"></i></a>                    
+                                    </td>
+                                </tr>
+                             {% endfor %}                                                              
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Név</th>
+                                    <th>E-mail cím</th>
+                                    <th>Státusz</th>
+                                    <th>Dátum</th>
+                                    <th class="text-right">Művelet</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end data table  -->
+    </div>
+
+
+    
+
+{% endblock %}
