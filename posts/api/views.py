@@ -16,7 +16,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 @api_view(['GET',])
 def api_posts_view(request):
     try:
-        post = Post.objects.all()#filter(post_status = 1)
+        post = Post.objects.all().exclude(post_status = 0)#filter(post_status = 1)
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -36,7 +36,7 @@ def api_post_paid_view(request, uid):
             #ha aktív akkor lekérem a hozzá tartozó cikkeket, ha nem akkor ingynees tartalmat jeleniti meg neki
             member_plan = is_member.member_plan.plan_slug #aktuális tagság
             print(member_plan)
-            posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) or Q(post_plan__plan_slug = 'free')).distinct()
+            posts = Post.objects.filter(Q(post_plan__plan_slug = member_plan) or Q(post_plan__plan_slug = 'free')).distinct() #ide majd egy exlude draft maitt
             print(posts)
         else:
             print('Nem member vagy nem aktiv')
@@ -62,7 +62,7 @@ class BookmarkList(ListAPIView):
             # Convert parameter string to list of integers
             ids = [ int(x) for x in ids.split(',') ]
             # Get objects for all parameter ids 
-            queryset = Post.objects.filter(id__in=ids)
+            queryset = Post.objects.filter(id__in=ids).exclude(post_status = 0)
         else:
             # Else no parameters, return all objects
             queryset = Post.objects.all()
@@ -83,7 +83,7 @@ def api_post_details_view(request, pk):
 @api_view(['GET',])
 def api_post_by_category_view(request, pk):
     try:
-        post_by_category = Post.objects.filter(post_category = pk)
+        post_by_category = Post.objects.filter(post_category = pk).exclude(post_status = 0)
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -128,7 +128,7 @@ def api_post_owners_view(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-
+#ezt majd törölni
 @api_view(['POST',])
 def api_post_create_view(request):
     if request.method == 'POST':

@@ -41,7 +41,8 @@ urlpatterns = [
     path('api/pages/', include('pages.api.urls')),
     path('api/accounts/', include('accounts.api.urls')),
     path('api/blog/', include('blog.api.urls')),
-    path('api/contact/', include('contact.api.urls'))
+    path('api/contact/', include('contact.api.urls')),
+    path('api/membership/', include('memberships.api.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

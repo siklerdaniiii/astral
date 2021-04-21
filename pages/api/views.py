@@ -9,7 +9,7 @@ from pages.api.serializers import PageApi
 @api_view(['GET',])
 def api_pages_view(request):
     try:
-        page = Page.objects.all()
+        page = Page.objects.all().exclude(page_status = 0)
     except Page.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

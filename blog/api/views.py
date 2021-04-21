@@ -10,7 +10,7 @@ from blog.api.serializers import BlogApi, BlogCategoryApi
 @api_view(['GET',])
 def api_blog_view(request):
     try:
-        blog = Blog.objects.all()#filter(blog_status = 1)
+        blog = Blog.objects.all().exclude(blog_status = 0)#filter(blog_status = 1)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -33,7 +33,7 @@ def api_blog_details_view(request, pk):
 @api_view(['GET',])
 def api_blog_by_category_view(request, pk):
     try:
-        blog_by_category = Blog.objects.filter(blog_category = pk)
+        blog_by_category = Blog.objects.filter(blog_category = pk).exclude(blog_status = 0)
     except Blog.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

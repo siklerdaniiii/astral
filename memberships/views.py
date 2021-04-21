@@ -90,3 +90,6 @@ def member_delete(request, pk):
     query.delete()
     messages.success(request, 'A törlés sikeres!')
     return redirect('member_index')
+
+def payment(request):
+    return render(request, 'checkout.html')

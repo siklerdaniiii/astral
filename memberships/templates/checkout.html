@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onClick="pay();">Fizetés</button>
+
+<script src="https://sdk.paylike.io/3.js"></script>
+<script>
+	var paylike = Paylike('cb988b2a-dbd0-4948-86b7-37612d8cfe29');
+
+	function pay(){
+		paylike.popup({
+			currency: 'HUF',
+			amount: 30,
+		}, function( err, r ){
+			if (err)
+				return console.warn(err);
+
+			console.log(r);	// { transaction: { id: ... } }
+
+			location.href = '/thank-you';
+		});
+	}
+</script>
+</body>
+</html>
